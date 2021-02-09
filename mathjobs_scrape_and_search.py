@@ -24,10 +24,8 @@ print("Found {} postings. Loading now...".format(len(postings)))
 # visit each posting and extract relevant data
 # create list of job_listing objects
 listings = []
-count = 1
 for i, posting in enumerate(postings):
-	if count % 25 == 0: print(count, end=' ', flush=True)
-	count+=1
+	if i % 25 == 0: print(i, end=' ', flush=True)
 	if postings[i].find("a"):
 		address = "https://www.mathjobs.org/" + postings[i].find("a")["href"]
 		listing_page = urlopen(address)
@@ -51,10 +49,8 @@ for i, posting in enumerate(postings):
 		attr.append(listing_soup.find("tr").get_text())
 		# initialize job_listing object
 		listings.append(job_listing(attr[0],attr[1],attr[2],attr[3],attr[4]))
-# for listing in listings:
-# 	print(listing.title)
-# 	print(listing.area)
 
+		
 # allow user to search job postings
 print("\nLoading complete.")
 while True:
