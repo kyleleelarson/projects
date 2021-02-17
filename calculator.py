@@ -67,7 +67,10 @@ def equal(string):
 						string = string[0:start-1]+rec+string[i+1:]
 					left, right, start, i = 0,0,0,-1
 			i+=1	
-		
+		if left != 0 or right != 0: # not equal number of left and right parentheses
+			entry = 'ERROR'
+			lbl_display["text"] = entry
+			return entry
 		parsed = [] # list holding string split into numbers and operations, all as strings
 		temp = ''
 		for c in string:
@@ -98,10 +101,12 @@ def equal(string):
 			if entry[-2:] == '.0':
 				entry = entry[0:-2]
 		lbl_display["text"] = entry
+
 	except:
 		entry = 'ERROR'
 		lbl_display["text"] = entry
-	return entry
+	
+	return entry	
 
 window = tk.Tk()
 window.title("Calculator")
