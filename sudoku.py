@@ -10,7 +10,7 @@ class sudoku_board:
 		self.board = self.full_board()
 		# create playing board by randomly removing as many clues
 		# as possible (up to 51) as long as there remains a unique solution
-		# average of 45 clues
+		# average of 45 clues remaining
 		self.playing_board = deepcopy(self.board)
 		sample = random.sample(range(0, 81), 51)
 		removed = []
@@ -32,7 +32,7 @@ class sudoku_board:
 				for n in range(3)}
 			return set('123456789') - row - col - block - set('.')
 
-	def full_board(self):
+	def full_board(self): # creates a solved sudoku board
 		board = [['.' for _ in range(9)] for _ in range(9)]
 		def populate(i):
 			if i == 81: return True
