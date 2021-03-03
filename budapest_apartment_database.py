@@ -44,7 +44,7 @@ VALUES(?,?,?)
 """
 
 # find apartments on website
-url = "https://ingatlan.com/lista/elado+budapest+lakas?page=550"
+url = "https://ingatlan.com/lista/elado+budapest+lakas?page=1"
 req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 page = urlopen(req)
 html = page.read().decode("utf-8")
@@ -64,7 +64,7 @@ while entries:
 				interior_size = entry.find("div", class_="listing__parameter listing__data--area-size").string
 				interior_size = int(interior_size.replace("m² terület", ""))
 				price = float(entry.find("div", class_="price").string.strip("M Ft"))
-				link = "ingatlan.com" + entry.find("a", class_="listing__link js-listing-active-area")["href"]
+				#link = "ingatlan.com" + entry.find("a", class_="listing__link js-listing-active-area")["href"]
 				count += 1
 				data = (address, interior_size, price )
 				new_apartment(connection, sql, data)
