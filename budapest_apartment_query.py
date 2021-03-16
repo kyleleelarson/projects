@@ -102,6 +102,19 @@ avg_price = execute_read_query(connection, average_price)[0][0]
 print(f"Average price of 2nd dist. apts between 35 and 42 sqm is {avg_price:.2f}m HUF.")
 # 34.87 million HUF
 
+# median price
+median_price = """
+SELECT price
+FROM unique_apartments
+ORDER BY price
+LIMIT 1
+OFFSET (SELECT COUNT(*)
+        FROM unique_apartments) / 2
+"""
+median_price = execute_read_query(connection, median_price)[0][0]
+print(f"Median price of Budapest apartments is {median_price:.2f}m HUF.")
+# 34.87 million HUF
+
 
 # number of apartments at each size
 # sizes = """
